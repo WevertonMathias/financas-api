@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long> {
-    List<Movimentacao> findbyUsuario(Usuario usuario);
+    List<Movimentacao> findByUsuario(Usuario usuario);
     List<Movimentacao> findByUsuarioAndDataBetween(Usuario usuario, LocalDate dataInicio, LocalDate dataFim);
-    List<Movimentacao> findByUsuarioAndTipo(Usuario usuario, TipoMovimentacao tipo);
+    List<Movimentacao> findByUsuarioAndCategoriaTipo(Usuario usuario, TipoMovimentacao tipo);
 }
