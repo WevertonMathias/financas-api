@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: financas_db
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_USER: financas_user
-      MYSQL_PASSWORD: financas_password
+      MYSQL_PASSWORD: 123456
     ports:
       - '3306:3306'
     volumes:

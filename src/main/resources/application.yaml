@@ -3,7 +3,7 @@ spring:
     name: financas-api
 
   datasource:
-    url: jdbc:mysql://localhost:3306/financas_db?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/financas_db?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:financas_user}
     password: ${DB_PASSWORD:123456}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,4 +15,4 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
