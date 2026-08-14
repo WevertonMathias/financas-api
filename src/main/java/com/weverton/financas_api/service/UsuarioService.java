@@ -4,6 +4,9 @@ import com.weverton.financas_api.dto.AtualizarPerfilRequestDTO;
 import com.weverton.financas_api.dto.LoginRequestDTO;
 import com.weverton.financas_api.dto.UsuarioRequestDTO;
 import com.weverton.financas_api.dto.UsuarioResponseDTO;
+import com.weverton.financas_api.exception.DadosInvalidosException;
+import com.weverton.financas_api.exception.RecursoJaExisteException;
+import com.weverton.financas_api.exception.RecursoNaoEncontradoException;
 import com.weverton.financas_api.model.Usuario;
 import com.weverton.financas_api.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +24,7 @@ public class UsuarioService {
     public UsuarioResponseDTO registrarUsuario(UsuarioRequestDTO usuario){
 
         if (usuarioRepository.existsByEmail(usuario.getEmail())){
-            throw new RuntimeException("Este e-mail já existe!");
+            throw new RecursoJaExisteException("Este e-mail já existe!");
         }
 
         /* 2.
@@ -56,7 +59,7 @@ public class UsuarioService {
 
             // PASSO 1: Busca o usuário no banco pelo e-mail. Se não existir, lança exceção.
         Usuario usuarioDB = usuarioRepository.findByEmail(dados.getEmail())
-                .orElseThrow(()-> new RuntimeException("E-mail ou senha invalidos!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("E-mail ou senha invalidos!"));
 
             // PASSO 2: Instancia o encoder e valida se as senhas coincidem
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -64,7 +67,7 @@ public class UsuarioService {
 
             // Se a senha NÃO for válida (!senhaValida), lança a exceção
         if (!senhaValida){
-             throw new RuntimeException("E-mail ou senha invalidos!");
+             throw new DadosInvalidosException("E-mail ou senha invalidos!");
         }
 
         UsuarioResponseDTO usuariologin = new UsuarioResponseDTO();
@@ -78,7 +81,7 @@ public class UsuarioService {
     public UsuarioResponseDTO buscarPorId(Long id){
 
         Usuario usuarioEncontrado = usuarioRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Usuário não encontrado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Usuário não encontrado!"));
 
         UsuarioResponseDTO usuarioDto = new UsuarioResponseDTO();
         usuarioDto.setId(usuarioEncontrado.getId());
@@ -91,11 +94,11 @@ public class UsuarioService {
     public UsuarioResponseDTO atualizarUsuario(Long id, AtualizarPerfilRequestDTO dadosAtualizado){
 
         Usuario usuarioEncontrado = usuarioRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Usuário não encontrado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Usuário não encontrado!"));
 
         if (!usuarioEncontrado.getEmail().equals(dadosAtualizado.getEmail())
                 && usuarioRepository.existsByEmail(dadosAtualizado.getEmail())){
-            throw new RuntimeException("Este novo e-mail já está em uso por outro usuário!");
+            throw new RecursoJaExisteException("Este novo e-mail já está em uso por outro usuário!");
         }
 
         usuarioEncontrado.setNome(dadosAtualizado.getNome());
@@ -115,13 +118,13 @@ public class UsuarioService {
     public void alterarSenha(Long id, String senhaAtual, String novaSenha) {
         // 1. Reutiliza a busca por ID
         Usuario usuarioEncontrado = usuarioRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Usuário não encontrado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Usuário não encontrado!"));
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // 2. Valida se a senha atual digitada está correta
         if (!encoder.matches(senhaAtual, usuarioEncontrado.getSenha())) {
-            throw new RuntimeException("A senha atual está incorreta!");
+            throw new DadosInvalidosException("A senha atual está incorreta!");
         }
 
         // 3. Criptografa a nova senha

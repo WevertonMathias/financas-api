@@ -2,6 +2,9 @@ package com.weverton.financas_api.service;
 
 import com.weverton.financas_api.dto.MovimentacaoRequestDTO;
 import com.weverton.financas_api.dto.MovimentacaoResponseDTO;
+import com.weverton.financas_api.exception.AcessoNegadoException;
+import com.weverton.financas_api.exception.DadosInvalidosException;
+import com.weverton.financas_api.exception.RecursoNaoEncontradoException;
 import com.weverton.financas_api.model.Categoria;
 import com.weverton.financas_api.model.Movimentacao;
 import com.weverton.financas_api.model.TipoMovimentacao;
@@ -28,13 +31,13 @@ public class MovimentacaoService {
     public MovimentacaoResponseDTO criarMovimentacao(MovimentacaoRequestDTO dados){
 
         Usuario usuarioDB = usuarioRepository.findById(dados.getIdUsuario())
-                .orElseThrow(()-> new RuntimeException("Id não existe!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Id não existe!"));
 
         Categoria categoriaDB = categoriaRepository.findById(dados.getIdCategoria())
-                .orElseThrow(()-> new RuntimeException("Id não existe!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Id não existe!"));
 
         if (dados.getValor().compareTo(BigDecimal.ZERO) <= 0 ){
-            throw new RuntimeException("Valor digitado é invalido! Tente novamente.");
+            throw new DadosInvalidosException("Valor digitado é invalido! Tente novamente.");
         }
 
         Movimentacao novaMovimentacao = new Movimentacao();
@@ -58,7 +61,7 @@ public class MovimentacaoService {
 
     public List<MovimentacaoResponseDTO> listarMovimentacao(Long idUsuario){
         Usuario usuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(()-> new RuntimeException("Id digitado não existe!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Id digitado não existe!"));
 
         List<Movimentacao> movimentacoes = movimentacaoRepository.findByUsuario(usuario);
 
@@ -79,7 +82,7 @@ public class MovimentacaoService {
 
     public List<MovimentacaoResponseDTO> listarPorPeriodo(Long idUsuario, LocalDate dataInicio, LocalDate dataFim){
         Usuario usuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(()-> new RuntimeException("Usuario não encontrado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Usuario não encontrado!"));
 
         List<Movimentacao> movimentacoes = movimentacaoRepository.findByUsuarioAndDataBetween(usuario, dataInicio, dataFim);
 
@@ -99,7 +102,7 @@ public class MovimentacaoService {
 
     public List<MovimentacaoResponseDTO> listarPorTipo(Long idUsuario, TipoMovimentacao tipo){
         Usuario usuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(()-> new RuntimeException("Usuario não encontrado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Usuario não encontrado!"));
 
         List<Movimentacao> movimentacoes = movimentacaoRepository.findByUsuarioAndCategoriaTipo(usuario, tipo);
 
@@ -119,17 +122,17 @@ public class MovimentacaoService {
 
     public MovimentacaoResponseDTO atualizarMovimentacao(Long idMovimentacao, Long idUsuario, MovimentacaoRequestDTO dados){
         Movimentacao movimentacao = movimentacaoRepository.findById(idMovimentacao)
-                .orElseThrow(()-> new RuntimeException("id de Movimentação não encontarado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("id de Movimentação não encontarado!"));
 
         if (!movimentacao.getUsuario().getId().equals(idUsuario)){
-            throw new  RuntimeException("Essa ação não pode ser comcluida! Id não pertence a esse usuario.");
+            throw new AcessoNegadoException("Essa ação não pode ser comcluida! Id não pertence a esse usuario.");
         }
 
         Categoria categoriaDB = categoriaRepository.findById(dados.getIdCategoria())
-                .orElseThrow(()-> new RuntimeException("Id não existe!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("Id não existe!"));
 
         if (dados.getValor().compareTo(BigDecimal.ZERO) <= 0 ){
-            throw new RuntimeException("Valor digitado é invalido! Tente novamente.");
+            throw new DadosInvalidosException("Valor digitado é invalido! Tente novamente.");
         }
 
         movimentacao.setDescricao(dados.getDescricao());
@@ -153,10 +156,10 @@ public class MovimentacaoService {
 
     public void deletarMovimentacao(Long idMovimentacao, Long idUsuario){
         Movimentacao movimentacao = movimentacaoRepository.findById(idMovimentacao)
-                .orElseThrow(()-> new RuntimeException("id de Movimentação não encontarado!"));
+                .orElseThrow(()-> new RecursoNaoEncontradoException("id de Movimentação não encontarado!"));
 
         if (!movimentacao.getUsuario().getId().equals(idUsuario)){
-            throw new  RuntimeException("Essa ação não pode ser comcluida! Id não pertence a esse usuario.");
+            throw new AcessoNegadoException("Essa ação não pode ser comcluida! Id não pertence a esse usuario.");
         }
 
         movimentacaoRepository.deleteById(idMovimentacao);
