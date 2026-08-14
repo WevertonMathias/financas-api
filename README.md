@@ -6,7 +6,7 @@
 [![Mockito](https://img.shields.io/badge/Mockito-5.x-yellow.svg)](https://site.mockito.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-API RESTful para controle e gerenciamento financeiro pessoal desenvolvida em **Java** e **Spring Boot**. O projeto conta com arquitetura em camadas, padrão DTO (Request/Response), validações de regras de negócio, criptografia de senhas e **cobertura de testes unitários** com **JUnit 5** e **Mockito**.
+API RESTful para controle e gerenciamento financeiro pessoal desenvolvida em **Java** e **Spring Boot**. O projeto conta com arquitetura em camadas, padrão DTO (Request/Response), tratamento de exceções customizado, validações de regras de negócio, criptografia de senhas e **cobertura de testes unitários** com **JUnit 5** e **Mockito**.
 
 ---
 
@@ -25,6 +25,7 @@ Esta aplicação foi construída para solucionar o gerenciamento de finanças pe
 - **Testes Automatizados:** JUnit 5 + Mockito
 - **Gerenciador de Dependências:** Apache Maven
 - **IDE:** IntelliJ IDEA
+- **Testes de API:** Postman
 
 ---
 
@@ -34,8 +35,9 @@ O projeto segue a **Arquitetura em Camadas** (*Layered Architecture*), promovend
 
 ```text
 com.weverton.financas_api
-├── controller   --> Endpoints REST (Em breve)
+├── controller   --> Endpoints REST (Usuario, Movimentacao, Categoria)
 ├── dto          --> Objetos de transferência de dados (Request/Response)
+├── exception    --> Exceções customizadas e tratamento centralizado
 ├── model        --> Entidades do banco de dados (JPA Entities)
 ├── repository   --> Camada de acesso aos dados (Spring Data JPA)
 └── service      --> Regras de negócio e validações
@@ -50,6 +52,19 @@ Exemplos de DTOs implementados:
 - `LoginRequestDTO`
 - `AtualizarPerfilRequestDTO`
 - `MovimentacaoRequestDTO` / `MovimentacaoResponseDTO`
+
+> A `CategoriaController` é uma exceção proposital ao padrão: por lidar com uma entidade simples, sem dados sensíveis, ela opera diretamente sobre o `CategoriaRepository`, sem camada de Service ou DTO — uma decisão consciente de simplicidade onde não há regra de negócio a proteger.
+
+### Tratamento de Exceções Customizado
+
+Em vez de exceções genéricas, o projeto define exceções específicas para cada categoria de erro, mapeadas para o status HTTP correto por um handler centralizado (`@RestControllerAdvice`):
+
+| Exceção | Status HTTP | Uso |
+|---|---|---|
+| `RecursoNaoEncontradoException` | 404 Not Found | Busca de um recurso (usuário, categoria, movimentação) que não existe |
+| `RecursoJaExisteException` | 409 Conflict | Tentativa de criar um recurso duplicado (ex: e-mail já cadastrado) |
+| `DadosInvalidosException` | 422 Unprocessable Entity | Dados fornecidos que violam uma regra de negócio (ex: senha incorreta, valor negativo) |
+| `AcessoNegadoException` | 403 Forbidden | Tentativa de acessar/modificar um recurso que não pertence ao usuário |
 
 ---
 
@@ -79,6 +94,37 @@ Exemplos de DTOs implementados:
 
 ---
 
+## 🌐 Endpoints da API
+
+### Usuários (`/usuarios`)
+| Verbo | Rota | Descrição |
+|---|---|---|
+| POST | `/usuarios` | Cadastrar novo usuário |
+| POST | `/usuarios/login` | Autenticar usuário |
+| GET | `/usuarios/{id}` | Buscar usuário por ID |
+| PUT | `/usuarios/{id}` | Atualizar perfil (nome/e-mail) |
+| PUT | `/usuarios/{id}/senha` | Alterar senha |
+
+### Movimentações (`/movimentacoes`)
+| Verbo | Rota | Descrição |
+|---|---|---|
+| POST | `/movimentacoes` | Criar movimentação |
+| GET | `/movimentacoes?idUsuario=` | Listar movimentações do usuário |
+| GET | `/movimentacoes/periodo?idUsuario=&dataInicio=&dataFim=` | Listar por período |
+| GET | `/movimentacoes/tipo?idUsuario=&tipo=` | Listar por tipo (RECEITA/DESPESA) |
+| PUT | `/movimentacoes/{id}?idUsuario=` | Atualizar movimentação |
+| DELETE | `/movimentacoes/{id}?idUsuario=` | Excluir movimentação |
+
+### Categorias (`/categorias`)
+| Verbo | Rota | Descrição |
+|---|---|---|
+| POST | `/categorias` | Criar categoria |
+| GET | `/categorias` | Listar todas as categorias |
+| PUT | `/categorias/{id}` | Atualizar categoria |
+| DELETE | `/categorias/{id}` | Excluir categoria |
+
+---
+
 ## 🧪 Cobertura de Testes Unitários
 
 A qualidade das camadas de serviço é garantida por testes unitários utilizando JUnit 5 e Mockito, aplicando o padrão AAA (Arrange, Act, Assert):
@@ -86,6 +132,7 @@ A qualidade das camadas de serviço é garantida por testes unitários utilizand
 - [x] **UsuarioService**: cadastro, login, busca por ID, atualização de perfil e alteração de senha — cenários de sucesso e de erro (e-mail duplicado, senha incorreta, usuário não encontrado).
 - [x] **MovimentacaoService**: criação, listagem (geral, por período, por tipo), atualização e exclusão — incluindo validação de propriedade do recurso.
 - [x] **Mocks de Repositório**: isolamento total da camada de persistência com `Mockito.when()` e `Mockito.verify()`.
+- [x] **Testes de integração manual**: todos os endpoints validados via Postman, incluindo cenários de erro (404, 409, 422, 403).
 
 ---
 
@@ -117,7 +164,7 @@ Configure o banco de dados no arquivo `src/main/resources/application.yml`:
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/financas_db?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/financas_db?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:financas_user}
     password: ${DB_PASSWORD:sua_senha_aqui}
   jpa:
@@ -135,6 +182,10 @@ Inicie a aplicação:
 mvn spring-boot:run
 ```
 
+A API estará disponível em `http://localhost:8080`.
+
+> ⚠️ **Nota sobre segurança**: o projeto utiliza uma configuração temporária do Spring Security (`SecurityConfig`) que libera todas as rotas para fins de desenvolvimento. Autenticação real via JWT ainda está no roadmap.
+
 ---
 
 ## 📌 Próximos Passos (Roadmap)
@@ -143,10 +194,12 @@ mvn spring-boot:run
 - [x] Implementação da camada `MovimentacaoService` com CRUD completo
 - [x] Migração de ambas as camadas para o padrão DTO (Request/Response)
 - [x] Suíte de testes unitários para `UsuarioService` e `MovimentacaoService`
-- [ ] Implementação dos Controllers (`UsuarioController`, `MovimentacaoController`) e testes de integração
+- [x] Implementação dos Controllers (`UsuarioController`, `MovimentacaoController`, `CategoriaController`) com testes via Postman
+- [x] Tratamento de exceções customizado com `@RestControllerAdvice`
 - [ ] Implementação de relatórios (gastos por categoria, saldo mensal, comparativo receita x despesa)
 - [ ] Implementação de Spring Security com autenticação JWT
 - [ ] Integração com IA para categorização automática e insights financeiros
+- [ ] Documentação da API com Swagger/OpenAPI
 - [ ] Front-end com Vaadin
 
 ---
@@ -155,7 +208,3 @@ mvn spring-boot:run
 
 **Weverton Mathias Rocha**
 Desenvolvedor Backend Java | Estudante de Análise e Desenvolvimento de Sistemas (Unifacvest)
-
-- 💼 LinkedIn: [weverton-mathias-rocha](https://linkedin.com/in/weverton-mathias-rocha)
-- 🐙 GitHub: [WevertonMathias](https://github.com/WevertonMathias)
-- ✉️ E-mail: wevertonmathias01@gmail.com
