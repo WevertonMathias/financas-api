@@ -164,4 +164,25 @@ public class MovimentacaoService {
 
         movimentacaoRepository.deleteById(idMovimentacao);
     }
+
+    public List<MovimentacaoResponseDTO> listarPorTipoEPeriodo(Long idUsuario, TipoMovimentacao tipo, LocalDate dataInicio, LocalDate dataFim) {
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Usuario não encontrado!"));
+
+        List<Movimentacao> movimentacoes = movimentacaoRepository.findByUsuarioAndCategoriaTipoAndDataBetween(usuario, tipo, dataInicio, dataFim);
+
+        List<MovimentacaoResponseDTO> resposta = new ArrayList<>();
+
+        for (Movimentacao movimentacao : movimentacoes) {
+            MovimentacaoResponseDTO dto = new MovimentacaoResponseDTO();
+            dto.setId(movimentacao.getId());
+            dto.setDescricao(movimentacao.getDescricao());
+            dto.setValor(movimentacao.getValor());
+            dto.setData(movimentacao.getData());
+            dto.setNomeCategoria(movimentacao.getCategoria().getNome());
+            resposta.add(dto);
+        }
+
+        return resposta;
+    }
 }
