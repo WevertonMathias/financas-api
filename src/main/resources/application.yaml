@@ -16,3 +16,6 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+jwt:
+    secret: ${JWT_SECRET:minha-chave-secreta-temporaria-trocar-depois}
+    expiration: 86400000

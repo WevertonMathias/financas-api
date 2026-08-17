@@ -18,6 +18,9 @@ import java.util.Optional;
 public class UsuarioServiceTest {
 
     @Mock
+    private TokenService tokenService;
+
+    @Mock
     private UsuarioRepository usuarioRepository;
 
     @InjectMocks
@@ -90,7 +93,7 @@ public class UsuarioServiceTest {
         Mockito.when(usuarioRepository.findByEmail("weverton@email.com"))
                 .thenReturn(Optional.of(usuarioBanco));
 
-        UsuarioResponseDTO resultado = usuarioService.logarUsuario(login);
+        LoginResponseDTO resultado = usuarioService.logarUsuario(login);
 
         Assertions.assertNotNull(resultado);
         Assertions.assertEquals("weverton@email.com", resultado.getEmail());

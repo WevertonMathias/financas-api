@@ -1,9 +1,6 @@
 package com.weverton.financas_api.service;
 
-import com.weverton.financas_api.dto.AtualizarPerfilRequestDTO;
-import com.weverton.financas_api.dto.LoginRequestDTO;
-import com.weverton.financas_api.dto.UsuarioRequestDTO;
-import com.weverton.financas_api.dto.UsuarioResponseDTO;
+import com.weverton.financas_api.dto.*;
 import com.weverton.financas_api.exception.DadosInvalidosException;
 import com.weverton.financas_api.exception.RecursoJaExisteException;
 import com.weverton.financas_api.exception.RecursoNaoEncontradoException;
@@ -19,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final TokenService tokenService;
 
     // 1. Validação de regra de negócio
     public UsuarioResponseDTO registrarUsuario(UsuarioRequestDTO usuario){
@@ -55,7 +53,7 @@ public class UsuarioService {
 
     }
 
-    public UsuarioResponseDTO logarUsuario(LoginRequestDTO dados) {
+    public LoginResponseDTO logarUsuario(LoginRequestDTO dados) {
 
             // PASSO 1: Busca o usuário no banco pelo e-mail. Se não existir, lança exceção.
         Usuario usuarioDB = usuarioRepository.findByEmail(dados.getEmail())
@@ -70,12 +68,15 @@ public class UsuarioService {
              throw new DadosInvalidosException("E-mail ou senha invalidos!");
         }
 
-        UsuarioResponseDTO usuariologin = new UsuarioResponseDTO();
-        usuariologin.setId(usuarioDB.getId());
-        usuariologin.setEmail(usuarioDB.getEmail());
-        usuariologin.setNome(usuarioDB.getNome());
+        String token = tokenService.gerarToken(usuarioDB);
 
-        return usuariologin ;
+        LoginResponseDTO login = new LoginResponseDTO();
+        login.setId(usuarioDB.getId());
+        login.setEmail(usuarioDB.getEmail());
+        login.setNome(usuarioDB.getNome());
+        login.setToken(token);
+
+        return login ;
     }
 
     public UsuarioResponseDTO buscarPorId(Long id){
