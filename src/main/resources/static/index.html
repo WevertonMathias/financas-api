@@ -1,822 +1,822 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livro-Caixa — Weverton &amp; Cia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper: #eef3ea;
-    --paper-line: #c7d2c0;
-    --ink: #1c2b21;
-    --ink-soft: #4a5c4e;
-    --green: #2f6f4e;
-    --green-deep: #1f4f37;
-    --rust: #a8402b;
-    --gold: #b8912a;
-    --card: #f7faf4;
-    --shadow: rgba(28, 43, 33, 0.12);
-    --radius: 2px;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      repeating-linear-gradient(180deg, transparent, transparent 34px, var(--paper-line) 35px),
-      var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    min-height:100vh;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{background:var(--gold); color:var(--ink);}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livro-Caixa — Weverton &amp; Cia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper: #eef3ea;
+      --paper-line: #c7d2c0;
+      --ink: #1c2b21;
+      --ink-soft: #4a5c4e;
+      --green: #2f6f4e;
+      --green-deep: #1f4f37;
+      --rust: #a8402b;
+      --gold: #b8912a;
+      --card: #f7faf4;
+      --shadow: rgba(28, 43, 33, 0.12);
+      --radius: 2px;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{
+      background:
+        repeating-linear-gradient(180deg, transparent, transparent 34px, var(--paper-line) 35px),
+        var(--paper);
+      color:var(--ink);
+      font-family:'IBM Plex Sans', sans-serif;
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+    }
+    ::selection{background:var(--gold); color:var(--ink);}
 
-  .masthead{
-    border-bottom:2px solid var(--ink);
-    padding:22px 28px 16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  .masthead h1{
-    font-family:'Source Serif 4', serif;
-    font-weight:700;
-    font-size:28px;
-    letter-spacing:0.3px;
-    margin:0;
-  }
-  .masthead .kicker{
-    text-transform:uppercase;
-    font-size:11px;
-    letter-spacing:2.5px;
-    color:var(--ink-soft);
-    margin:0 0 4px;
-    font-weight:500;
-  }
-  .masthead .who{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--ink-soft);
-  }
-  .masthead .who button{
-    margin-left:12px;
-    background:none;
-    border:1px solid var(--ink-soft);
-    color:var(--ink-soft);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    padding:4px 10px;
-    border-radius:var(--radius);
-    cursor:pointer;
-  }
-  .masthead .who button:hover{border-color:var(--ink); color:var(--ink);}
+    .masthead{
+      border-bottom:2px solid var(--ink);
+      padding:22px 28px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .masthead h1{
+      font-family:'Source Serif 4', serif;
+      font-weight:700;
+      font-size:28px;
+      letter-spacing:0.3px;
+      margin:0;
+    }
+    .masthead .kicker{
+      text-transform:uppercase;
+      font-size:11px;
+      letter-spacing:2.5px;
+      color:var(--ink-soft);
+      margin:0 0 4px;
+      font-weight:500;
+    }
+    .masthead .who{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:12px;
+      color:var(--ink-soft);
+    }
+    .masthead .who button{
+      margin-left:12px;
+      background:none;
+      border:1px solid var(--ink-soft);
+      color:var(--ink-soft);
+      font-family:'IBM Plex Mono', monospace;
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:var(--radius);
+      cursor:pointer;
+    }
+    .masthead .who button:hover{border-color:var(--ink); color:var(--ink);}
 
-  main{max-width:920px; margin:0 auto; padding:28px;}
+    main{max-width:920px; margin:0 auto; padding:28px;}
 
-  /* ---------- LOGIN ---------- */
-  .vault{
-    max-width:420px;
-    margin:60px auto;
-    background:var(--card);
-    border:1px solid var(--paper-line);
-    border-top:4px solid var(--ink);
-    padding:36px 32px;
-    box-shadow:0 8px 24px var(--shadow);
-  }
-  .vault h2{
-    font-family:'Source Serif 4', serif;
-    font-size:22px;
-    margin:0 0 4px;
-  }
-  .vault p.sub{color:var(--ink-soft); font-size:13px; margin:0 0 26px;}
-  .field{margin-bottom:16px;}
-  .field label{
-    display:block;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:var(--ink-soft);
-    margin-bottom:6px;
-    font-weight:500;
-  }
-  .field input, .field select{
-    width:100%;
-    padding:10px 12px;
-    border:1px solid var(--paper-line);
-    background:#fff;
-    border-radius:var(--radius);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:14px;
-    color:var(--ink);
-  }
-  .field input:focus, .field select:focus, button:focus-visible{
-    outline:2px solid var(--green);
-    outline-offset:1px;
-  }
-  .btn{
-    width:100%;
-    padding:12px;
-    background:var(--ink);
-    color:var(--paper);
-    border:none;
-    border-radius:var(--radius);
-    font-family:'IBM Plex Sans', sans-serif;
-    font-weight:600;
-    font-size:14px;
-    letter-spacing:0.3px;
-    cursor:pointer;
-    transition:background .15s ease;
-  }
-  .btn:hover{background:var(--green-deep);}
-  .btn.ghost{
-    background:transparent;
-    color:var(--ink);
-    border:1px solid var(--ink);
-  }
-  .btn.ghost:hover{background:var(--ink); color:var(--paper);}
-  .switcher{
-    text-align:center;
-    margin-top:16px;
-    font-size:12px;
-    color:var(--ink-soft);
-  }
-  .switcher a{color:var(--green-deep); cursor:pointer; text-decoration:underline;}
+    /* ---------- LOGIN ---------- */
+    .vault{
+      max-width:420px;
+      margin:60px auto;
+      background:var(--card);
+      border:1px solid var(--paper-line);
+      border-top:4px solid var(--ink);
+      padding:36px 32px;
+      box-shadow:0 8px 24px var(--shadow);
+    }
+    .vault h2{
+      font-family:'Source Serif 4', serif;
+      font-size:22px;
+      margin:0 0 4px;
+    }
+    .vault p.sub{color:var(--ink-soft); font-size:13px; margin:0 0 26px;}
+    .field{margin-bottom:16px;}
+    .field label{
+      display:block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      color:var(--ink-soft);
+      margin-bottom:6px;
+      font-weight:500;
+    }
+    .field input, .field select{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid var(--paper-line);
+      background:#fff;
+      border-radius:var(--radius);
+      font-family:'IBM Plex Mono', monospace;
+      font-size:14px;
+      color:var(--ink);
+    }
+    .field input:focus, .field select:focus, button:focus-visible{
+      outline:2px solid var(--green);
+      outline-offset:1px;
+    }
+    .btn{
+      width:100%;
+      padding:12px;
+      background:var(--ink);
+      color:var(--paper);
+      border:none;
+      border-radius:var(--radius);
+      font-family:'IBM Plex Sans', sans-serif;
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:0.3px;
+      cursor:pointer;
+      transition:background .15s ease;
+    }
+    .btn:hover{background:var(--green-deep);}
+    .btn.ghost{
+      background:transparent;
+      color:var(--ink);
+      border:1px solid var(--ink);
+    }
+    .btn.ghost:hover{background:var(--ink); color:var(--paper);}
+    .switcher{
+      text-align:center;
+      margin-top:16px;
+      font-size:12px;
+      color:var(--ink-soft);
+    }
+    .switcher a{color:var(--green-deep); cursor:pointer; text-decoration:underline;}
 
-  .banner{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12.5px;
-    padding:10px 14px;
-    border-radius:var(--radius);
-    margin-bottom:16px;
-    border-left:3px solid var(--rust);
-    background:#fbeae6;
-    color:var(--rust);
-  }
-  .banner.ok{border-color:var(--green); background:#e8f2ea; color:var(--green-deep);}
+    .banner{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:12.5px;
+      padding:10px 14px;
+      border-radius:var(--radius);
+      margin-bottom:16px;
+      border-left:3px solid var(--rust);
+      background:#fbeae6;
+      color:var(--rust);
+    }
+    .banner.ok{border-color:var(--green); background:#e8f2ea; color:var(--green-deep);}
 
-  /* ---------- DASHBOARD ---------- */
-  .stamp-row{display:flex; gap:22px; flex-wrap:wrap; align-items:flex-start; margin-bottom:30px;}
-  .stamp{
-    position:relative;
-    border:3px double var(--green-deep);
-    color:var(--green-deep);
-    padding:18px 26px;
-    transform:rotate(-2deg);
-    background:rgba(47,111,78,0.04);
-    min-width:210px;
-  }
-  .stamp.neg{border-color:var(--rust); color:var(--rust); background:rgba(168,64,43,0.04); transform:rotate(1.5deg);}
-  .stamp .label{
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    font-weight:600;
-    margin-bottom:6px;
-  }
-  .stamp .value{
-    font-family:'Source Serif 4', serif;
-    font-size:30px;
-    font-weight:700;
-    font-variant-numeric:tabular-nums;
-  }
-  .mini-stats{display:flex; gap:26px; flex-wrap:wrap; padding-top:6px;}
-  .mini-stat .label{font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink-soft); margin-bottom:3px;}
-  .mini-stat .value{font-family:'IBM Plex Mono', monospace; font-size:17px; font-weight:600;}
-  .mini-stat.rec .value{color:var(--green-deep);}
-  .mini-stat.desp .value{color:var(--rust);}
+    /* ---------- DASHBOARD ---------- */
+    .stamp-row{display:flex; gap:22px; flex-wrap:wrap; align-items:flex-start; margin-bottom:30px;}
+    .stamp{
+      position:relative;
+      border:3px double var(--green-deep);
+      color:var(--green-deep);
+      padding:18px 26px;
+      transform:rotate(-2deg);
+      background:rgba(47,111,78,0.04);
+      min-width:210px;
+    }
+    .stamp.neg{border-color:var(--rust); color:var(--rust); background:rgba(168,64,43,0.04); transform:rotate(1.5deg);}
+    .stamp .label{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+    .stamp .value{
+      font-family:'Source Serif 4', serif;
+      font-size:30px;
+      font-weight:700;
+      font-variant-numeric:tabular-nums;
+    }
+    .mini-stats{display:flex; gap:26px; flex-wrap:wrap; padding-top:6px;}
+    .mini-stat .label{font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink-soft); margin-bottom:3px;}
+    .mini-stat .value{font-family:'IBM Plex Mono', monospace; font-size:17px; font-weight:600;}
+    .mini-stat.rec .value{color:var(--green-deep);}
+    .mini-stat.desp .value{color:var(--rust);}
 
-  .period-bar{
-    display:flex; gap:12px; align-items:end; flex-wrap:wrap;
-    padding:14px 0; margin-bottom:24px; border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);
-  }
-  .period-bar .field{margin:0; flex:1; min-width:140px;}
-  .period-bar .btn{width:auto; padding:10px 18px;}
+    .period-bar{
+      display:flex; gap:12px; align-items:end; flex-wrap:wrap;
+      padding:14px 0; margin-bottom:24px; border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);
+    }
+    .period-bar .field{margin:0; flex:1; min-width:140px;}
+    .period-bar .btn{width:auto; padding:10px 18px;}
 
-  section.ledger{margin-bottom:34px;}
-  section.ledger h3{
-    font-family:'Source Serif 4', serif;
-    font-size:15px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    border-bottom:1px solid var(--ink);
-    padding-bottom:6px;
-    margin-bottom:14px;
-    color:var(--ink);
-  }
+    section.ledger{margin-bottom:34px;}
+    section.ledger h3{
+      font-family:'Source Serif 4', serif;
+      font-size:15px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      border-bottom:1px solid var(--ink);
+      padding-bottom:6px;
+      margin-bottom:14px;
+      color:var(--ink);
+    }
 
-  .cat-row{margin-bottom:12px;}
-  .cat-row .top{
-    display:flex; justify-content:space-between;
-    font-family:'IBM Plex Mono', monospace; font-size:13px;
-    margin-bottom:4px;
-  }
-  .cat-row .bar-track{height:8px; background:#e2e9dd; border-radius:1px; overflow:hidden;}
-  .cat-row .bar-fill{height:100%; background:var(--green); border-radius:1px;}
+    .cat-row{margin-bottom:12px;}
+    .cat-row .top{
+      display:flex; justify-content:space-between;
+      font-family:'IBM Plex Mono', monospace; font-size:13px;
+      margin-bottom:4px;
+    }
+    .cat-row .bar-track{height:8px; background:#e2e9dd; border-radius:1px; overflow:hidden;}
+    .cat-row .bar-fill{height:100%; background:var(--green); border-radius:1px;}
 
-  table.entries{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono', monospace; font-size:13px;}
-  table.entries th{
-    text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:1px;
-    color:var(--ink-soft); border-bottom:1px solid var(--ink); padding:0 8px 8px; font-weight:500;
-  }
-  table.entries td{padding:9px 8px; border-bottom:1px solid var(--paper-line); vertical-align:top;}
-  table.entries tr:hover td{background:rgba(47,111,78,0.05);}
-  .amt{text-align:right; font-weight:600; font-variant-numeric:tabular-nums;}
-  .amt.rec{color:var(--green-deep);}
-  .amt.desp{color:var(--rust);}
-  .tag{
-    font-size:10px; text-transform:uppercase; letter-spacing:0.5px;
-    border:1px solid var(--paper-line); padding:2px 6px; border-radius:12px; color:var(--ink-soft);
-  }
-  .del-btn{
-    background:none; border:none; color:var(--rust); cursor:pointer; font-family:'IBM Plex Mono', monospace;
-    font-size:12px; text-decoration:underline; padding:0;
-  }
-  .empty{color:var(--ink-soft); font-size:13px; font-style:italic; padding:18px 0;}
+    table.entries{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono', monospace; font-size:13px;}
+    table.entries th{
+      text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:1px;
+      color:var(--ink-soft); border-bottom:1px solid var(--ink); padding:0 8px 8px; font-weight:500;
+    }
+    table.entries td{padding:9px 8px; border-bottom:1px solid var(--paper-line); vertical-align:top;}
+    table.entries tr:hover td{background:rgba(47,111,78,0.05);}
+    .amt{text-align:right; font-weight:600; font-variant-numeric:tabular-nums;}
+    .amt.rec{color:var(--green-deep);}
+    .amt.desp{color:var(--rust);}
+    .tag{
+      font-size:10px; text-transform:uppercase; letter-spacing:0.5px;
+      border:1px solid var(--paper-line); padding:2px 6px; border-radius:12px; color:var(--ink-soft);
+    }
+    .del-btn{
+      background:none; border:none; color:var(--rust); cursor:pointer; font-family:'IBM Plex Mono', monospace;
+      font-size:12px; text-decoration:underline; padding:0;
+    }
+    .empty{color:var(--ink-soft); font-size:13px; font-style:italic; padding:18px 0;}
 
-  .entry-form{
-    background:var(--card); border:1px solid var(--paper-line); border-left:4px solid var(--gold);
-    padding:20px 22px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr auto; gap:12px; align-items:end;
-  }
-  .entry-form .field{margin:0;}
-  @media (max-width:760px){
-    .entry-form{grid-template-columns:1fr 1fr;}
-    .stamp-row{flex-direction:column;}
-  }
+    .entry-form{
+      background:var(--card); border:1px solid var(--paper-line); border-left:4px solid var(--gold);
+      padding:20px 22px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr auto; gap:12px; align-items:end;
+    }
+    .entry-form .field{margin:0;}
+    @media (max-width:760px){
+      .entry-form{grid-template-columns:1fr 1fr;}
+      .stamp-row{flex-direction:column;}
+    }
 
-  .cat-manager{display:flex; gap:10px; align-items:end; margin-top:10px;}
-  .cat-manager .field{margin:0; flex:1;}
-  .cat-manager .btn{width:auto; padding:10px 16px;}
+    .cat-manager{display:flex; gap:10px; align-items:end; margin-top:10px;}
+    .cat-manager .field{margin:0; flex:1;}
+    .cat-manager .btn{width:auto; padding:10px 16px;}
 
-  /* ---------- ORÇAMENTO (barra de consumo) ---------- */
-  .budget{
-    background:var(--card); border:1px solid var(--paper-line); border-left:4px solid var(--green-deep);
-    padding:18px 22px; margin-bottom:30px;
-  }
-  .budget .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; flex-wrap:wrap; gap:6px;}
-  .budget .top .lbl{font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink-soft);}
-  .budget .top .sobra{font-family:'Source Serif 4', serif; font-size:20px; font-weight:700;}
-  .budget .top .sobra.neg{color:var(--rust);}
-  .budget .top .sobra.pos{color:var(--green-deep);}
-  .budget-track{
-    position:relative; height:26px; background:#e2e9dd; border:1px solid var(--paper-line); border-radius:1px; overflow:hidden;
-  }
-  .budget-fill{
-    height:100%; background:repeating-linear-gradient(135deg, var(--rust), var(--rust) 6px, #b8503b 6px, #b8503b 12px);
-    transition:width .4s ease;
-  }
-  .budget-caption{display:flex; justify-content:space-between; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); margin-top:6px;}
+    /* ---------- ORÇAMENTO (barra de consumo) ---------- */
+    .budget{
+      background:var(--card); border:1px solid var(--paper-line); border-left:4px solid var(--green-deep);
+      padding:18px 22px; margin-bottom:30px;
+    }
+    .budget .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; flex-wrap:wrap; gap:6px;}
+    .budget .top .lbl{font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink-soft);}
+    .budget .top .sobra{font-family:'Source Serif 4', serif; font-size:20px; font-weight:700;}
+    .budget .top .sobra.neg{color:var(--rust);}
+    .budget .top .sobra.pos{color:var(--green-deep);}
+    .budget-track{
+      position:relative; height:26px; background:#e2e9dd; border:1px solid var(--paper-line); border-radius:1px; overflow:hidden;
+    }
+    .budget-fill{
+      height:100%; background:repeating-linear-gradient(135deg, var(--rust), var(--rust) 6px, #b8503b 6px, #b8503b 12px);
+      transition:width .4s ease;
+    }
+    .budget-caption{display:flex; justify-content:space-between; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); margin-top:6px;}
 
-  /* ---------- GRÁFICOS DE PIZZA ---------- */
-  .charts-row{display:flex; gap:34px; flex-wrap:wrap; margin-bottom:8px;}
-  .chart-card{flex:1; min-width:240px;}
-  .chart-card h4{
-    font-family:'Source Serif 4', serif; font-size:14px; margin:0 0 14px; font-weight:600;
-  }
-  .pie-wrap{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
-  .pie{
-    width:130px; height:130px; border-radius:50%;
-    box-shadow:inset 0 0 0 1px var(--paper-line);
-    flex-shrink:0;
-  }
-  .pie-legend{display:flex; flex-direction:column; gap:7px; font-family:'IBM Plex Mono', monospace; font-size:12px;}
-  .pie-legend .row{display:flex; align-items:center; gap:8px;}
-  .swatch{width:10px; height:10px; border-radius:2px; flex-shrink:0;}
-  .pie-legend .pct{color:var(--ink-soft);}
+    /* ---------- GRÁFICOS DE PIZZA ---------- */
+    .charts-row{display:flex; gap:34px; flex-wrap:wrap; margin-bottom:8px;}
+    .chart-card{flex:1; min-width:240px;}
+    .chart-card h4{
+      font-family:'Source Serif 4', serif; font-size:14px; margin:0 0 14px; font-weight:600;
+    }
+    .pie-wrap{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
+    .pie{
+      width:130px; height:130px; border-radius:50%;
+      box-shadow:inset 0 0 0 1px var(--paper-line);
+      flex-shrink:0;
+    }
+    .pie-legend{display:flex; flex-direction:column; gap:7px; font-family:'IBM Plex Mono', monospace; font-size:12px;}
+    .pie-legend .row{display:flex; align-items:center; gap:8px;}
+    .swatch{width:10px; height:10px; border-radius:2px; flex-shrink:0;}
+    .pie-legend .pct{color:var(--ink-soft);}
 
-  /* ---------- GUARDADO ---------- */
-  .stash{
-    border:2px dashed var(--gold); background:rgba(184,145,42,0.06);
-    padding:16px 22px; margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
-  }
-  .stash .lbl{font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:#8a6a1c;}
-  .stash .value{font-family:'Source Serif 4', serif; font-size:24px; font-weight:700; color:#8a6a1c;}
-  .stash .hint{font-size:11px; color:var(--ink-soft); width:100%;}
+    /* ---------- GUARDADO ---------- */
+    .stash{
+      border:2px dashed var(--gold); background:rgba(184,145,42,0.06);
+      padding:16px 22px; margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
+    }
+    .stash .lbl{font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:#8a6a1c;}
+    .stash .value{font-family:'Source Serif 4', serif; font-size:24px; font-weight:700; color:#8a6a1c;}
+    .stash .hint{font-size:11px; color:var(--ink-soft); width:100%;}
 
-  footer{text-align:center; padding:30px 0 40px; font-size:11px; color:var(--ink-soft); letter-spacing:0.5px;}
+    footer{text-align:center; padding:30px 0 40px; font-size:11px; color:var(--ink-soft); letter-spacing:0.5px;}
 
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important;}
-  }
-</style>
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none !important;}
+    }
+  </style>
 </head>
 <body>
 
 <div id="app"></div>
 
 <script>
-const API = 'http://localhost:8080';
+  const API = 'https://financas-api-mpp3.onrender.com';
 
-const state = {
-  token: null,
-  usuario: null,
-  view: 'login', // login | register
-  categorias: [],
-  error: null,
-  ok: null,
-  dataInicio: firstOfMonth(),
-  dataFim: today(),
-  saldo: null,
-  porCategoria: null,
-  movimentacoes: []
-};
+  const state = {
+    token: null,
+    usuario: null,
+    view: 'login', // login | register
+    categorias: [],
+    error: null,
+    ok: null,
+    dataInicio: firstOfMonth(),
+    dataFim: today(),
+    saldo: null,
+    porCategoria: null,
+    movimentacoes: []
+  };
 
-function firstOfMonth(){
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-01`;
-}
-function today(){
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
-function fmt(v){
-  const n = Number(v || 0);
-  return n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
-}
-function fmtDate(iso){
-  if(!iso) return '';
-  const [y,m,d] = iso.split('-');
-  return `${d}/${m}/${y}`;
-}
-
-async function api(path, options = {}){
-  const headers = options.headers || {};
-  headers['Content-Type'] = 'application/json';
-  if(state.token) headers['Authorization'] = 'Bearer ' + state.token;
-  const res = await fetch(API + path, {...options, headers});
-  if(res.status === 204) return null;
-  const text = await res.text();
-  let data = null;
-  try { data = text ? JSON.parse(text) : null; } catch(e){ data = text; }
-  if(!res.ok){
-    const msg = (data && (data.message || data)) || `Erro ${res.status}`;
-    throw new Error(typeof msg === 'string' ? msg : JSON.stringify(msg));
+  function firstOfMonth(){
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-01`;
   }
-  return data;
-}
-
-async function doLogin(email, senha){
-  state.error = null;
-  try{
-    const data = await api('/usuarios/login', {method:'POST', body: JSON.stringify({email, senha})});
-    state.token = data.token;
-    state.usuario = {id: data.id, nome: data.nome, email: data.email};
-    await loadAll();
-  }catch(e){
-    state.error = 'Não foi possível entrar: ' + e.message;
-    render();
+  function today(){
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-}
-
-async function doRegister(nome, email, senha){
-  state.error = null;
-  try{
-    await api('/usuarios', {method:'POST', body: JSON.stringify({nome, email, senha})});
-    state.ok = 'Conta criada. Agora entre com seu e-mail e senha.';
-    state.view = 'login';
-    render();
-  }catch(e){
-    state.error = 'Não foi possível cadastrar: ' + e.message;
-    render();
+  function fmt(v){
+    const n = Number(v || 0);
+    return n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
   }
-}
-
-function doLogout(){
-  state.token = null; state.usuario = null; state.view = 'login';
-  state.saldo = null; state.porCategoria = null; state.movimentacoes = [];
-  render();
-}
-
-async function loadAll(){
-  await Promise.all([loadCategorias(), loadRelatorios(), loadMovimentacoes()]);
-  render();
-}
-
-async function loadCategorias(){
-  try{ state.categorias = await api('/categorias'); }catch(e){ state.categorias = []; }
-}
-async function loadRelatorios(){
-  try{
-    state.saldo = await api(`/relatorios/saldo?dataInicio=${state.dataInicio}&dataFim=${state.dataFim}`);
-  }catch(e){ state.saldo = null; }
-  try{
-    state.porCategoria = await api(`/relatorios/categoria?tipo=DESPESA&dataInicio=${state.dataInicio}&dataFim=${state.dataFim}`);
-  }catch(e){ state.porCategoria = null; }
-}
-async function loadMovimentacoes(){
-  try{ state.movimentacoes = (await api('/movimentacoes')) || []; }
-  catch(e){ state.movimentacoes = []; }
-}
-
-async function submitEntry(form){
-  const idCategoria = Number(form.categoria.value);
-  const descricao = form.descricao.value.trim();
-  const valor = Number(form.valor.value);
-  const data = form.data.value;
-  if(!idCategoria || !descricao || !valor || !data){
-    state.error = 'Preencha todos os campos do lançamento.';
-    render(); return;
+  function fmtDate(iso){
+    if(!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
   }
-  try{
-    await api('/movimentacoes', {method:'POST', body: JSON.stringify({idCategoria, descricao, valor, data})});
-    state.ok = 'Lançamento registrado.';
-    state.error = null;
-    await loadAll();
-  }catch(e){
-    state.error = 'Não foi possível lançar: ' + e.message;
-    render();
-  }
-}
 
-async function deleteEntry(id){
-  if(!confirm('Excluir este lançamento?')) return;
-  try{
-    await api(`/movimentacoes/${id}`, {method:'DELETE'});
-    await loadAll();
-  }catch(e){
-    state.error = 'Não foi possível excluir: ' + e.message;
-    render();
-  }
-}
-
-async function addCategoria(nome, tipo){
-  if(!nome.trim()) return;
-  try{
-    await api('/categorias', {method:'POST', body: JSON.stringify({nome: nome.trim(), tipo})});
-    await loadCategorias();
-    render();
-  }catch(e){
-    state.error = 'Não foi possível criar a categoria: ' + e.message;
-    render();
-  }
-}
-
-/* Descobre o tipo (RECEITA/DESPESA) de uma movimentação a partir do nome da categoria */
-function tipoPorNomeCategoria(nomeCategoria){
-  const c = state.categorias.find(c => c.nome === nomeCategoria);
-  return c ? c.tipo : null;
-}
-
-function gerarRelatorio(){
-  const saldo = state.saldo;
-  const totalRec = saldo ? Number(saldo.totalReceitas) : 0;
-  const totalDesp = saldo ? Number(saldo.totalDespesas) : 0;
-  const saldoFinal = saldo ? Number(saldo.saldo) : 0;
-  const catMap = (state.porCategoria && state.porCategoria.totalPorCategoria) || {};
-  const catEntries = Object.entries(catMap).sort((a,b) => b[1]-a[1]);
-  const stashTotal = calcStash();
-
-  const movsOrdenadas = state.movimentacoes
-    .slice()
-    .filter(m => m.data >= state.dataInicio && m.data <= state.dataFim)
-    .sort((a,b) => (a.data > b.data ? 1 : -1));
-
-  const catRowsHtml = catEntries.length
-    ? catEntries.map(([nome, val]) => `<tr><td>${nome}</td><td class="r">R$ ${fmt(val)}</td><td class="r">${((val/(totalDesp||1))*100).toFixed(1)}%</td></tr>`).join('')
-    : `<tr><td colspan="3" class="empty-row">Nenhuma despesa categorizada no período.</td></tr>`;
-
-  const movRowsHtml = movsOrdenadas.length
-    ? movsOrdenadas.map(m => {
-        const tipo = tipoPorNomeCategoria(m.nomeCategoria);
-        const sinal = tipo === 'RECEITA' ? '+' : (tipo === 'DESPESA' ? '−' : '');
-        const cor = tipo === 'RECEITA' ? '#1f4f37' : (tipo === 'DESPESA' ? '#a8402b' : '#1c2b21');
-        return `<tr><td>${fmtDate(m.data)}</td><td>${m.descricao}</td><td>${m.nomeCategoria}</td><td class="r" style="color:${cor}">${sinal} R$ ${fmt(m.valor)}</td></tr>`;
-      }).join('')
-    : `<tr><td colspan="4" class="empty-row">Nenhum lançamento no período.</td></tr>`;
-
-  const doc = `<!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><title>Relatório — ${fmtDate(state.dataInicio)} a ${fmtDate(state.dataFim)}</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  @page{ size:A4; margin:18mm 16mm; }
-  *{box-sizing:border-box;}
-  body{font-family:'IBM Plex Sans',sans-serif; color:#1c2b21; margin:0; padding:26px 34px; background:#fff;}
-  .rep-head{border-bottom:2px solid #1c2b21; padding-bottom:14px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
-  .rep-head .kicker{text-transform:uppercase; font-size:10px; letter-spacing:2.5px; color:#4a5c4e; margin:0 0 4px;}
-  .rep-head h1{font-family:'Source Serif 4',serif; font-size:24px; margin:0;}
-  .rep-head .period{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#4a5c4e; text-align:right;}
-  .summary{display:flex; gap:26px; margin-bottom:28px; flex-wrap:wrap;}
-  .summary .box{border:1px solid #c7d2c0; padding:12px 18px; min-width:150px;}
-  .summary .box .l{font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#4a5c4e; margin-bottom:4px;}
-  .summary .box .v{font-family:'Source Serif 4',serif; font-size:20px; font-weight:700;}
-  .summary .box.rec .v{color:#1f4f37;}
-  .summary .box.desp .v{color:#a8402b;}
-  .summary .box.saldo .v{color:${saldoFinal>=0 ? '#1f4f37' : '#a8402b'};}
-  h2{font-family:'Source Serif 4',serif; font-size:14px; text-transform:uppercase; letter-spacing:1.2px; border-bottom:1px solid #1c2b21; padding-bottom:6px; margin:26px 0 10px;}
-  table{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:12px;}
-  th{text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#4a5c4e; border-bottom:1px solid #1c2b21; padding:0 6px 7px; font-weight:500;}
-  td{padding:7px 6px; border-bottom:1px solid #e2e9dd;}
-  td.r{text-align:right;}
-  .empty-row{color:#4a5c4e; font-style:italic;}
-  .stash-line{margin-top:16px; padding:10px 14px; border:1.5px dashed #b8912a; background:rgba(184,145,42,0.06); font-family:'IBM Plex Mono',monospace; font-size:12px; display:flex; justify-content:space-between;}
-  .print-bar{margin-bottom:20px;}
-  .print-bar button{font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:13px; padding:9px 18px; background:#1c2b21; color:#eef3ea; border:none; border-radius:2px; cursor:pointer;}
-  footer{margin-top:34px; font-size:10px; color:#4a5c4e; text-align:center; letter-spacing:0.5px;}
-  @media print{ .print-bar{display:none;} body{padding:0;} }
-</style></head>
-<body>
-  <div class="print-bar"><button onclick="window.print()">Imprimir / Salvar como PDF</button></div>
-  <div class="rep-head">
-    <div><p class="kicker">Livro-Caixa Doméstico</p><h1>Relatório do período</h1></div>
-    <div class="period">${fmtDate(state.dataInicio)} — ${fmtDate(state.dataFim)}<br>Emitido em ${fmtDate(today())}</div>
-  </div>
-  <div class="summary">
-    <div class="box rec"><div class="l">Receitas</div><div class="v">R$ ${fmt(totalRec)}</div></div>
-    <div class="box desp"><div class="l">Despesas</div><div class="v">R$ ${fmt(totalDesp)}</div></div>
-    <div class="box saldo"><div class="l">Saldo</div><div class="v">R$ ${fmt(saldoFinal)}</div></div>
-  </div>
-  <h2>Despesas por categoria</h2>
-  <table><thead><tr><th>Categoria</th><th class="r">Valor</th><th class="r">% do total</th></tr></thead><tbody>${catRowsHtml}</tbody></table>
-  ${stashTotal > 0 ? `<div class="stash-line"><span>Guardado no período</span><span>R$ ${fmt(stashTotal)}</span></div>` : ''}
-  <h2>Lançamentos do período</h2>
-  <table><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th class="r">Valor</th></tr></thead><tbody>${movRowsHtml}</tbody></table>
-  <footer>documento gerado automaticamente — uso pessoal</footer>
-</body></html>`;
-
-  const win = window.open('', '_blank');
-  win.document.write(doc);
-  win.document.close();
-}
-
-/* Paleta cíclica, tons alinhados à identidade do livro-caixa */
-const PALETTE = ['#2f6f4e', '#b8912a', '#a8402b', '#4a7a8c', '#6b4a8c', '#7a8c2f', '#8c5a2f', '#2f5a8c'];
-
-function buildPie(entries){
-  // entries: [[label, value], ...]  -> retorna {css, legend[]}
-  const total = entries.reduce((s, [,v]) => s + v, 0);
-  if(total <= 0) return {css:'#e2e9dd', legend:[]};
-  let acc = 0;
-  const stops = [];
-  const legend = [];
-  entries.forEach(([label, val], i) => {
-    const color = PALETTE[i % PALETTE.length];
-    const start = (acc/total)*360;
-    acc += val;
-    const end = (acc/total)*360;
-    stops.push(`${color} ${start.toFixed(2)}deg ${end.toFixed(2)}deg`);
-    legend.push({label, val, pct: (val/total*100).toFixed(1), color});
-  });
-  return {css:`conic-gradient(${stops.join(', ')})`, legend};
-}
-
-function renderPieCard(title, entries, emptyMsg){
-  const {css, legend} = buildPie(entries);
-  const legendHtml = legend.length ? legend.map(l => `
-      <div class="row">
-        <span class="swatch" style="background:${l.color}"></span>
-        <span>${l.label}</span>
-        <span class="pct">${l.pct}%</span>
-      </div>`).join('') : `<p class="empty" style="padding:0;margin:0;">${emptyMsg}</p>`;
-  return `
-    <div class="chart-card">
-      <h4>${title}</h4>
-      <div class="pie-wrap">
-        <div class="pie" style="background:${css}"></div>
-        <div class="pie-legend">${legendHtml}</div>
-      </div>
-    </div>`;
-}
-
-/* Identifica lançamentos de poupança/reserva pelo nome da categoria */
-function isStashCategory(nome){
-  const n = (nome || '').toLowerCase();
-  return n.includes('poupan') || n.includes('reserva') || n.includes('guardad');
-}
-function calcStash(){
-  return state.movimentacoes
-    .filter(m => isStashCategory(m.nomeCategoria))
-    .reduce((s, m) => s + Number(m.valor), 0);
-}
-
-/* ---------------- RENDER ---------------- */
-
-function render(){
-  const app = document.getElementById('app');
-  if(!state.token){
-    app.innerHTML = renderAuth();
-    bindAuthEvents();
-    return;
-  }
-  app.innerHTML = renderShell();
-  bindShellEvents();
-}
-
-function renderAuth(){
-  const isLogin = state.view === 'login';
-  return `
-    <header class="masthead">
-      <div>
-        <p class="kicker">Livro-Caixa Doméstico</p>
-        <h1>Extrato &amp; Lançamentos</h1>
-      </div>
-    </header>
-    <div class="vault">
-      <h2>${isLogin ? 'Entrar' : 'Abrir conta'}</h2>
-      <p class="sub">${isLogin ? 'Acesse o razão da casa.' : 'Cadastre-se para começar a lançar.'}</p>
-      ${state.error ? `<div class="banner">${state.error}</div>` : ''}
-      ${state.ok ? `<div class="banner ok">${state.ok}</div>` : ''}
-      <form id="authForm">
-        ${!isLogin ? `
-        <div class="field"><label>Nome</label><input name="nome" type="text" required></div>` : ''}
-        <div class="field"><label>E-mail</label><input name="email" type="email" required></div>
-        <div class="field"><label>Senha</label><input name="senha" type="password" required></div>
-        <button class="btn" type="submit">${isLogin ? 'Entrar' : 'Criar conta'}</button>
-      </form>
-      <p class="switcher">
-        ${isLogin ? 'Ainda não tem conta? <a id="toRegister">Abrir conta</a>' : 'Já tem conta? <a id="toLogin">Entrar</a>'}
-      </p>
-    </div>
-    <footer>registro pessoal — não compartilhado com terceiros</footer>
-  `;
-}
-
-function bindAuthEvents(){
-  const form = document.getElementById('authForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    state.error = null; state.ok = null;
-    if(state.view === 'login'){
-      doLogin(form.email.value.trim(), form.senha.value);
-    } else {
-      doRegister(form.nome.value.trim(), form.email.value.trim(), form.senha.value);
+  async function api(path, options = {}){
+    const headers = options.headers || {};
+    headers['Content-Type'] = 'application/json';
+    if(state.token) headers['Authorization'] = 'Bearer ' + state.token;
+    const res = await fetch(API + path, {...options, headers});
+    if(res.status === 204) return null;
+    const text = await res.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch(e){ data = text; }
+    if(!res.ok){
+      const msg = (data && (data.message || data)) || `Erro ${res.status}`;
+      throw new Error(typeof msg === 'string' ? msg : JSON.stringify(msg));
     }
-  });
-  const toR = document.getElementById('toRegister');
-  const toL = document.getElementById('toLogin');
-  if(toR) toR.addEventListener('click', () => { state.view='register'; state.error=null; state.ok=null; render(); });
-  if(toL) toL.addEventListener('click', () => { state.view='login'; state.error=null; state.ok=null; render(); });
-}
+    return data;
+  }
 
-function renderShell(){
-  const saldo = state.saldo;
-  const positivo = saldo && Number(saldo.saldo) >= 0;
-  const catMap = (saldo && state.porCategoria && state.porCategoria.totalPorCategoria) || {};
-  const catEntries = Object.entries(catMap).sort((a,b) => b[1]-a[1]);
-  const maxCat = catEntries.length ? catEntries[0][1] : 1;
+  async function doLogin(email, senha){
+    state.error = null;
+    try{
+      const data = await api('/usuarios/login', {method:'POST', body: JSON.stringify({email, senha})});
+      state.token = data.token;
+      state.usuario = {id: data.id, nome: data.nome, email: data.email};
+      await loadAll();
+    }catch(e){
+      state.error = 'Não foi possível entrar: ' + e.message;
+      render();
+    }
+  }
 
-  const totalRec = saldo ? Number(saldo.totalReceitas) : 0;
-  const totalDesp = saldo ? Number(saldo.totalDespesas) : 0;
-  const consumido = totalRec > 0 ? Math.min(100, (totalDesp/totalRec)*100) : (totalDesp > 0 ? 100 : 0);
-  const sobra = totalRec - totalDesp;
+  async function doRegister(nome, email, senha){
+    state.error = null;
+    try{
+      await api('/usuarios', {method:'POST', body: JSON.stringify({nome, email, senha})});
+      state.ok = 'Conta criada. Agora entre com seu e-mail e senha.';
+      state.view = 'login';
+      render();
+    }catch(e){
+      state.error = 'Não foi possível cadastrar: ' + e.message;
+      render();
+    }
+  }
 
-  const pieRecXDesp = renderPieCard('Receitas × Despesas', [
-    ...(totalRec > 0 ? [['Receitas', totalRec]] : []),
-    ...(totalDesp > 0 ? [['Despesas', totalDesp]] : []),
-  ], 'Sem lançamentos no período.');
-  const pieCategorias = renderPieCard('Despesas por categoria', catEntries, 'Sem despesas categorizadas no período.');
+  function doLogout(){
+    state.token = null; state.usuario = null; state.view = 'login';
+    state.saldo = null; state.porCategoria = null; state.movimentacoes = [];
+    render();
+  }
 
-  const stashTotal = calcStash();
+  async function loadAll(){
+    await Promise.all([loadCategorias(), loadRelatorios(), loadMovimentacoes()]);
+    render();
+  }
 
-  const movRows = state.movimentacoes.length ? state.movimentacoes
-    .slice()
-    .sort((a,b) => (a.data < b.data ? 1 : -1))
-    .map(m => {
-      const tipo = tipoPorNomeCategoria(m.nomeCategoria);
-      const cls = tipo === 'RECEITA' ? 'rec' : (tipo === 'DESPESA' ? 'desp' : '');
-      return `
-      <tr>
-        <td>${fmtDate(m.data)}</td>
-        <td>${m.descricao}</td>
-        <td><span class="tag">${m.nomeCategoria}</span></td>
-        <td class="amt ${cls}">${tipo === 'RECEITA' ? '+' : (tipo === 'DESPESA' ? '−' : '')} ${fmt(m.valor)}</td>
-        <td><button class="del-btn" data-id="${m.id}">excluir</button></td>
-      </tr>`;
-    }).join('') : `<tr><td colspan="5" class="empty">Nenhum lançamento neste período. Registre o primeiro abaixo.</td></tr>`;
+  async function loadCategorias(){
+    try{ state.categorias = await api('/categorias'); }catch(e){ state.categorias = []; }
+  }
+  async function loadRelatorios(){
+    try{
+      state.saldo = await api(`/relatorios/saldo?dataInicio=${state.dataInicio}&dataFim=${state.dataFim}`);
+    }catch(e){ state.saldo = null; }
+    try{
+      state.porCategoria = await api(`/relatorios/categoria?tipo=DESPESA&dataInicio=${state.dataInicio}&dataFim=${state.dataFim}`);
+    }catch(e){ state.porCategoria = null; }
+  }
+  async function loadMovimentacoes(){
+    try{ state.movimentacoes = (await api('/movimentacoes')) || []; }
+    catch(e){ state.movimentacoes = []; }
+  }
 
-  const catRows = catEntries.length ? catEntries.map(([nome, val]) => `
-      <div class="cat-row">
-        <div class="top"><span>${nome}</span><span>R$ ${fmt(val)}</span></div>
-        <div class="bar-track"><div class="bar-fill" style="width:${Math.max(4, (val/maxCat)*100)}%"></div></div>
-      </div>`).join('') : `<p class="empty">Sem despesas categorizadas neste período.</p>`;
+  async function submitEntry(form){
+    const idCategoria = Number(form.categoria.value);
+    const descricao = form.descricao.value.trim();
+    const valor = Number(form.valor.value);
+    const data = form.data.value;
+    if(!idCategoria || !descricao || !valor || !data){
+      state.error = 'Preencha todos os campos do lançamento.';
+      render(); return;
+    }
+    try{
+      await api('/movimentacoes', {method:'POST', body: JSON.stringify({idCategoria, descricao, valor, data})});
+      state.ok = 'Lançamento registrado.';
+      state.error = null;
+      await loadAll();
+    }catch(e){
+      state.error = 'Não foi possível lançar: ' + e.message;
+      render();
+    }
+  }
 
-  const catOptions = state.categorias.map(c => `<option value="${c.id}">${c.nome} (${c.tipo})</option>`).join('');
+  async function deleteEntry(id){
+    if(!confirm('Excluir este lançamento?')) return;
+    try{
+      await api(`/movimentacoes/${id}`, {method:'DELETE'});
+      await loadAll();
+    }catch(e){
+      state.error = 'Não foi possível excluir: ' + e.message;
+      render();
+    }
+  }
 
-  return `
-    <header class="masthead">
-      <div>
-        <p class="kicker">Livro-Caixa Doméstico</p>
-        <h1>Extrato &amp; Lançamentos</h1>
-      </div>
-      <div class="who">Conectado como <strong>${state.usuario.nome}</strong><button id="logoutBtn">sair</button></div>
-    </header>
-    <main>
-      ${state.error ? `<div class="banner">${state.error}</div>` : ''}
-      ${state.ok ? `<div class="banner ok">${state.ok}</div>` : ''}
+  async function addCategoria(nome, tipo){
+    if(!nome.trim()) return;
+    try{
+      await api('/categorias', {method:'POST', body: JSON.stringify({nome: nome.trim(), tipo})});
+      await loadCategorias();
+      render();
+    }catch(e){
+      state.error = 'Não foi possível criar a categoria: ' + e.message;
+      render();
+    }
+  }
 
-      <div class="period-bar">
-        <div class="field"><label>De</label><input id="dataInicio" type="date" value="${state.dataInicio}"></div>
-        <div class="field"><label>Até</label><input id="dataFim" type="date" value="${state.dataFim}"></div>
-        <button class="btn ghost" id="applyPeriod">Aplicar período</button>
-        <button class="btn" id="gerarRelatorioBtn">Gerar relatório do período</button>
-      </div>
+  /* Descobre o tipo (RECEITA/DESPESA) de uma movimentação a partir do nome da categoria */
+  function tipoPorNomeCategoria(nomeCategoria){
+    const c = state.categorias.find(c => c.nome === nomeCategoria);
+    return c ? c.tipo : null;
+  }
 
-      <div class="stamp-row">
-        <div class="stamp ${positivo ? '' : 'neg'}">
-          <div class="label">Saldo do período</div>
-          <div class="value">R$ ${saldo ? fmt(saldo.saldo) : '0,00'}</div>
+  function gerarRelatorio(){
+    const saldo = state.saldo;
+    const totalRec = saldo ? Number(saldo.totalReceitas) : 0;
+    const totalDesp = saldo ? Number(saldo.totalDespesas) : 0;
+    const saldoFinal = saldo ? Number(saldo.saldo) : 0;
+    const catMap = (state.porCategoria && state.porCategoria.totalPorCategoria) || {};
+    const catEntries = Object.entries(catMap).sort((a,b) => b[1]-a[1]);
+    const stashTotal = calcStash();
+
+    const movsOrdenadas = state.movimentacoes
+      .slice()
+      .filter(m => m.data >= state.dataInicio && m.data <= state.dataFim)
+      .sort((a,b) => (a.data > b.data ? 1 : -1));
+
+    const catRowsHtml = catEntries.length
+      ? catEntries.map(([nome, val]) => `<tr><td>${nome}</td><td class="r">R$ ${fmt(val)}</td><td class="r">${((val/(totalDesp||1))*100).toFixed(1)}%</td></tr>`).join('')
+      : `<tr><td colspan="3" class="empty-row">Nenhuma despesa categorizada no período.</td></tr>`;
+
+    const movRowsHtml = movsOrdenadas.length
+      ? movsOrdenadas.map(m => {
+          const tipo = tipoPorNomeCategoria(m.nomeCategoria);
+          const sinal = tipo === 'RECEITA' ? '+' : (tipo === 'DESPESA' ? '−' : '');
+          const cor = tipo === 'RECEITA' ? '#1f4f37' : (tipo === 'DESPESA' ? '#a8402b' : '#1c2b21');
+          return `<tr><td>${fmtDate(m.data)}</td><td>${m.descricao}</td><td>${m.nomeCategoria}</td><td class="r" style="color:${cor}">${sinal} R$ ${fmt(m.valor)}</td></tr>`;
+        }).join('')
+      : `<tr><td colspan="4" class="empty-row">Nenhum lançamento no período.</td></tr>`;
+
+    const doc = `<!DOCTYPE html>
+  <html lang="pt-BR"><head><meta charset="UTF-8"><title>Relatório — ${fmtDate(state.dataInicio)} a ${fmtDate(state.dataFim)}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @page{ size:A4; margin:18mm 16mm; }
+    *{box-sizing:border-box;}
+    body{font-family:'IBM Plex Sans',sans-serif; color:#1c2b21; margin:0; padding:26px 34px; background:#fff;}
+    .rep-head{border-bottom:2px solid #1c2b21; padding-bottom:14px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+    .rep-head .kicker{text-transform:uppercase; font-size:10px; letter-spacing:2.5px; color:#4a5c4e; margin:0 0 4px;}
+    .rep-head h1{font-family:'Source Serif 4',serif; font-size:24px; margin:0;}
+    .rep-head .period{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#4a5c4e; text-align:right;}
+    .summary{display:flex; gap:26px; margin-bottom:28px; flex-wrap:wrap;}
+    .summary .box{border:1px solid #c7d2c0; padding:12px 18px; min-width:150px;}
+    .summary .box .l{font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#4a5c4e; margin-bottom:4px;}
+    .summary .box .v{font-family:'Source Serif 4',serif; font-size:20px; font-weight:700;}
+    .summary .box.rec .v{color:#1f4f37;}
+    .summary .box.desp .v{color:#a8402b;}
+    .summary .box.saldo .v{color:${saldoFinal>=0 ? '#1f4f37' : '#a8402b'};}
+    h2{font-family:'Source Serif 4',serif; font-size:14px; text-transform:uppercase; letter-spacing:1.2px; border-bottom:1px solid #1c2b21; padding-bottom:6px; margin:26px 0 10px;}
+    table{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:12px;}
+    th{text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#4a5c4e; border-bottom:1px solid #1c2b21; padding:0 6px 7px; font-weight:500;}
+    td{padding:7px 6px; border-bottom:1px solid #e2e9dd;}
+    td.r{text-align:right;}
+    .empty-row{color:#4a5c4e; font-style:italic;}
+    .stash-line{margin-top:16px; padding:10px 14px; border:1.5px dashed #b8912a; background:rgba(184,145,42,0.06); font-family:'IBM Plex Mono',monospace; font-size:12px; display:flex; justify-content:space-between;}
+    .print-bar{margin-bottom:20px;}
+    .print-bar button{font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:13px; padding:9px 18px; background:#1c2b21; color:#eef3ea; border:none; border-radius:2px; cursor:pointer;}
+    footer{margin-top:34px; font-size:10px; color:#4a5c4e; text-align:center; letter-spacing:0.5px;}
+    @media print{ .print-bar{display:none;} body{padding:0;} }
+  </style></head>
+  <body>
+    <div class="print-bar"><button onclick="window.print()">Imprimir / Salvar como PDF</button></div>
+    <div class="rep-head">
+      <div><p class="kicker">Livro-Caixa Doméstico</p><h1>Relatório do período</h1></div>
+      <div class="period">${fmtDate(state.dataInicio)} — ${fmtDate(state.dataFim)}<br>Emitido em ${fmtDate(today())}</div>
+    </div>
+    <div class="summary">
+      <div class="box rec"><div class="l">Receitas</div><div class="v">R$ ${fmt(totalRec)}</div></div>
+      <div class="box desp"><div class="l">Despesas</div><div class="v">R$ ${fmt(totalDesp)}</div></div>
+      <div class="box saldo"><div class="l">Saldo</div><div class="v">R$ ${fmt(saldoFinal)}</div></div>
+    </div>
+    <h2>Despesas por categoria</h2>
+    <table><thead><tr><th>Categoria</th><th class="r">Valor</th><th class="r">% do total</th></tr></thead><tbody>${catRowsHtml}</tbody></table>
+    ${stashTotal > 0 ? `<div class="stash-line"><span>Guardado no período</span><span>R$ ${fmt(stashTotal)}</span></div>` : ''}
+    <h2>Lançamentos do período</h2>
+    <table><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th class="r">Valor</th></tr></thead><tbody>${movRowsHtml}</tbody></table>
+    <footer>documento gerado automaticamente — uso pessoal</footer>
+  </body></html>`;
+
+    const win = window.open('', '_blank');
+    win.document.write(doc);
+    win.document.close();
+  }
+
+  /* Paleta cíclica, tons alinhados à identidade do livro-caixa */
+  const PALETTE = ['#2f6f4e', '#b8912a', '#a8402b', '#4a7a8c', '#6b4a8c', '#7a8c2f', '#8c5a2f', '#2f5a8c'];
+
+  function buildPie(entries){
+    // entries: [[label, value], ...]  -> retorna {css, legend[]}
+    const total = entries.reduce((s, [,v]) => s + v, 0);
+    if(total <= 0) return {css:'#e2e9dd', legend:[]};
+    let acc = 0;
+    const stops = [];
+    const legend = [];
+    entries.forEach(([label, val], i) => {
+      const color = PALETTE[i % PALETTE.length];
+      const start = (acc/total)*360;
+      acc += val;
+      const end = (acc/total)*360;
+      stops.push(`${color} ${start.toFixed(2)}deg ${end.toFixed(2)}deg`);
+      legend.push({label, val, pct: (val/total*100).toFixed(1), color});
+    });
+    return {css:`conic-gradient(${stops.join(', ')})`, legend};
+  }
+
+  function renderPieCard(title, entries, emptyMsg){
+    const {css, legend} = buildPie(entries);
+    const legendHtml = legend.length ? legend.map(l => `
+        <div class="row">
+          <span class="swatch" style="background:${l.color}"></span>
+          <span>${l.label}</span>
+          <span class="pct">${l.pct}%</span>
+        </div>`).join('') : `<p class="empty" style="padding:0;margin:0;">${emptyMsg}</p>`;
+    return `
+      <div class="chart-card">
+        <h4>${title}</h4>
+        <div class="pie-wrap">
+          <div class="pie" style="background:${css}"></div>
+          <div class="pie-legend">${legendHtml}</div>
         </div>
-        <div class="mini-stats">
-          <div class="mini-stat rec"><div class="label">Receitas</div><div class="value">R$ ${saldo ? fmt(saldo.totalReceitas) : '0,00'}</div></div>
-          <div class="mini-stat desp"><div class="label">Despesas</div><div class="value">R$ ${saldo ? fmt(saldo.totalDespesas) : '0,00'}</div></div>
-        </div>
-      </div>
+      </div>`;
+  }
 
-      <div class="budget">
-        <div class="top">
-          <span class="lbl">Orçamento do período — receita sendo consumida</span>
-          <span class="sobra ${sobra >= 0 ? 'pos' : 'neg'}">${sobra >= 0 ? 'sobra' : 'falta'} R$ ${fmt(Math.abs(sobra))}</span>
-        </div>
-        <div class="budget-track">
-          <div class="budget-fill" style="width:${consumido}%"></div>
-        </div>
-        <div class="budget-caption">
-          <span>R$ ${fmt(totalDesp)} gasto</span>
-          <span>de R$ ${fmt(totalRec)} recebido</span>
-        </div>
-      </div>
+  /* Identifica lançamentos de poupança/reserva pelo nome da categoria */
+  function isStashCategory(nome){
+    const n = (nome || '').toLowerCase();
+    return n.includes('poupan') || n.includes('reserva') || n.includes('guardad');
+  }
+  function calcStash(){
+    return state.movimentacoes
+      .filter(m => isStashCategory(m.nomeCategoria))
+      .reduce((s, m) => s + Number(m.valor), 0);
+  }
 
-      ${stashTotal > 0 ? `
-      <div class="stash">
-        <span class="lbl">Guardado no período</span>
-        <span class="value">R$ ${fmt(stashTotal)}</span>
-        <span class="hint">Lançamentos em categorias com "poupança", "reserva" ou "guardado" no nome.</span>
-      </div>` : ''}
+  /* ---------------- RENDER ---------------- */
 
-      <section class="ledger">
-        <h3>Panorama do período</h3>
-        <div class="charts-row">
-          ${pieRecXDesp}
-          ${pieCategorias}
+  function render(){
+    const app = document.getElementById('app');
+    if(!state.token){
+      app.innerHTML = renderAuth();
+      bindAuthEvents();
+      return;
+    }
+    app.innerHTML = renderShell();
+    bindShellEvents();
+  }
+
+  function renderAuth(){
+    const isLogin = state.view === 'login';
+    return `
+      <header class="masthead">
+        <div>
+          <p class="kicker">Livro-Caixa Doméstico</p>
+          <h1>Extrato &amp; Lançamentos</h1>
         </div>
-      </section>
-
-      <section class="ledger">
-        <h3>Onde foi o dinheiro</h3>
-        ${catRows}
-      </section>
-
-      <section class="ledger">
-        <h3>Novo lançamento</h3>
-        <form class="entry-form" id="entryForm">
-          <div class="field"><label>Descrição</label><input name="descricao" type="text" placeholder="Mercado, salário..." required></div>
-          <div class="field"><label>Categoria</label><select name="categoria" required><option value="">selecione</option>${catOptions}</select></div>
-          <div class="field"><label>Valor</label><input name="valor" type="number" step="0.01" min="0.01" placeholder="0,00" required></div>
-          <div class="field"><label>Data</label><input name="data" type="date" value="${today()}" required></div>
-          <button class="btn" type="submit">Lançar</button>
+      </header>
+      <div class="vault">
+        <h2>${isLogin ? 'Entrar' : 'Abrir conta'}</h2>
+        <p class="sub">${isLogin ? 'Acesse o razão da casa.' : 'Cadastre-se para começar a lançar.'}</p>
+        ${state.error ? `<div class="banner">${state.error}</div>` : ''}
+        ${state.ok ? `<div class="banner ok">${state.ok}</div>` : ''}
+        <form id="authForm">
+          ${!isLogin ? `
+          <div class="field"><label>Nome</label><input name="nome" type="text" required></div>` : ''}
+          <div class="field"><label>E-mail</label><input name="email" type="email" required></div>
+          <div class="field"><label>Senha</label><input name="senha" type="password" required></div>
+          <button class="btn" type="submit">${isLogin ? 'Entrar' : 'Criar conta'}</button>
         </form>
-        <div class="cat-manager">
-          <div class="field"><label>Nova categoria</label><input id="novaCatNome" type="text" placeholder="Ex.: Transporte"></div>
-          <div class="field"><label>Tipo</label>
-            <select id="novaCatTipo"><option value="DESPESA">Despesa</option><option value="RECEITA">Receita</option></select>
-          </div>
-          <button class="btn ghost" id="addCatBtn">Criar categoria</button>
+        <p class="switcher">
+          ${isLogin ? 'Ainda não tem conta? <a id="toRegister">Abrir conta</a>' : 'Já tem conta? <a id="toLogin">Entrar</a>'}
+        </p>
+      </div>
+      <footer>registro pessoal — não compartilhado com terceiros</footer>
+    `;
+  }
+
+  function bindAuthEvents(){
+    const form = document.getElementById('authForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      state.error = null; state.ok = null;
+      if(state.view === 'login'){
+        doLogin(form.email.value.trim(), form.senha.value);
+      } else {
+        doRegister(form.nome.value.trim(), form.email.value.trim(), form.senha.value);
+      }
+    });
+    const toR = document.getElementById('toRegister');
+    const toL = document.getElementById('toLogin');
+    if(toR) toR.addEventListener('click', () => { state.view='register'; state.error=null; state.ok=null; render(); });
+    if(toL) toL.addEventListener('click', () => { state.view='login'; state.error=null; state.ok=null; render(); });
+  }
+
+  function renderShell(){
+    const saldo = state.saldo;
+    const positivo = saldo && Number(saldo.saldo) >= 0;
+    const catMap = (saldo && state.porCategoria && state.porCategoria.totalPorCategoria) || {};
+    const catEntries = Object.entries(catMap).sort((a,b) => b[1]-a[1]);
+    const maxCat = catEntries.length ? catEntries[0][1] : 1;
+
+    const totalRec = saldo ? Number(saldo.totalReceitas) : 0;
+    const totalDesp = saldo ? Number(saldo.totalDespesas) : 0;
+    const consumido = totalRec > 0 ? Math.min(100, (totalDesp/totalRec)*100) : (totalDesp > 0 ? 100 : 0);
+    const sobra = totalRec - totalDesp;
+
+    const pieRecXDesp = renderPieCard('Receitas × Despesas', [
+      ...(totalRec > 0 ? [['Receitas', totalRec]] : []),
+      ...(totalDesp > 0 ? [['Despesas', totalDesp]] : []),
+    ], 'Sem lançamentos no período.');
+    const pieCategorias = renderPieCard('Despesas por categoria', catEntries, 'Sem despesas categorizadas no período.');
+
+    const stashTotal = calcStash();
+
+    const movRows = state.movimentacoes.length ? state.movimentacoes
+      .slice()
+      .sort((a,b) => (a.data < b.data ? 1 : -1))
+      .map(m => {
+        const tipo = tipoPorNomeCategoria(m.nomeCategoria);
+        const cls = tipo === 'RECEITA' ? 'rec' : (tipo === 'DESPESA' ? 'desp' : '');
+        return `
+        <tr>
+          <td>${fmtDate(m.data)}</td>
+          <td>${m.descricao}</td>
+          <td><span class="tag">${m.nomeCategoria}</span></td>
+          <td class="amt ${cls}">${tipo === 'RECEITA' ? '+' : (tipo === 'DESPESA' ? '−' : '')} ${fmt(m.valor)}</td>
+          <td><button class="del-btn" data-id="${m.id}">excluir</button></td>
+        </tr>`;
+      }).join('') : `<tr><td colspan="5" class="empty">Nenhum lançamento neste período. Registre o primeiro abaixo.</td></tr>`;
+
+    const catRows = catEntries.length ? catEntries.map(([nome, val]) => `
+        <div class="cat-row">
+          <div class="top"><span>${nome}</span><span>R$ ${fmt(val)}</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.max(4, (val/maxCat)*100)}%"></div></div>
+        </div>`).join('') : `<p class="empty">Sem despesas categorizadas neste período.</p>`;
+
+    const catOptions = state.categorias.map(c => `<option value="${c.id}">${c.nome} (${c.tipo})</option>`).join('');
+
+    return `
+      <header class="masthead">
+        <div>
+          <p class="kicker">Livro-Caixa Doméstico</p>
+          <h1>Extrato &amp; Lançamentos</h1>
         </div>
-      </section>
+        <div class="who">Conectado como <strong>${state.usuario.nome}</strong><button id="logoutBtn">sair</button></div>
+      </header>
+      <main>
+        ${state.error ? `<div class="banner">${state.error}</div>` : ''}
+        ${state.ok ? `<div class="banner ok">${state.ok}</div>` : ''}
 
-      <section class="ledger">
-        <h3>Lançamentos</h3>
-        <table class="entries">
-          <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th style="text-align:right">Valor</th><th></th></tr></thead>
-          <tbody>${movRows}</tbody>
-        </table>
-      </section>
-    </main>
-    <footer>registro pessoal — não compartilhado com terceiros</footer>
-  `;
-}
+        <div class="period-bar">
+          <div class="field"><label>De</label><input id="dataInicio" type="date" value="${state.dataInicio}"></div>
+          <div class="field"><label>Até</label><input id="dataFim" type="date" value="${state.dataFim}"></div>
+          <button class="btn ghost" id="applyPeriod">Aplicar período</button>
+          <button class="btn" id="gerarRelatorioBtn">Gerar relatório do período</button>
+        </div>
 
-function bindShellEvents(){
-  document.getElementById('logoutBtn').addEventListener('click', doLogout);
+        <div class="stamp-row">
+          <div class="stamp ${positivo ? '' : 'neg'}">
+            <div class="label">Saldo do período</div>
+            <div class="value">R$ ${saldo ? fmt(saldo.saldo) : '0,00'}</div>
+          </div>
+          <div class="mini-stats">
+            <div class="mini-stat rec"><div class="label">Receitas</div><div class="value">R$ ${saldo ? fmt(saldo.totalReceitas) : '0,00'}</div></div>
+            <div class="mini-stat desp"><div class="label">Despesas</div><div class="value">R$ ${saldo ? fmt(saldo.totalDespesas) : '0,00'}</div></div>
+          </div>
+        </div>
 
-  document.getElementById('applyPeriod').addEventListener('click', () => {
-    state.dataInicio = document.getElementById('dataInicio').value;
-    state.dataFim = document.getElementById('dataFim').value;
-    loadRelatorios().then(render);
-  });
+        <div class="budget">
+          <div class="top">
+            <span class="lbl">Orçamento do período — receita sendo consumida</span>
+            <span class="sobra ${sobra >= 0 ? 'pos' : 'neg'}">${sobra >= 0 ? 'sobra' : 'falta'} R$ ${fmt(Math.abs(sobra))}</span>
+          </div>
+          <div class="budget-track">
+            <div class="budget-fill" style="width:${consumido}%"></div>
+          </div>
+          <div class="budget-caption">
+            <span>R$ ${fmt(totalDesp)} gasto</span>
+            <span>de R$ ${fmt(totalRec)} recebido</span>
+          </div>
+        </div>
 
-  document.getElementById('gerarRelatorioBtn').addEventListener('click', gerarRelatorio);
+        ${stashTotal > 0 ? `
+        <div class="stash">
+          <span class="lbl">Guardado no período</span>
+          <span class="value">R$ ${fmt(stashTotal)}</span>
+          <span class="hint">Lançamentos em categorias com "poupança", "reserva" ou "guardado" no nome.</span>
+        </div>` : ''}
 
-  document.getElementById('entryForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    state.ok = null; state.error = null;
-    submitEntry(e.target);
-  });
+        <section class="ledger">
+          <h3>Panorama do período</h3>
+          <div class="charts-row">
+            ${pieRecXDesp}
+            ${pieCategorias}
+          </div>
+        </section>
 
-  document.getElementById('addCatBtn').addEventListener('click', () => {
-    const nome = document.getElementById('novaCatNome').value;
-    const tipo = document.getElementById('novaCatTipo').value;
-    addCategoria(nome, tipo);
-  });
+        <section class="ledger">
+          <h3>Onde foi o dinheiro</h3>
+          ${catRows}
+        </section>
 
-  document.querySelectorAll('.del-btn').forEach(btn => {
-    btn.addEventListener('click', () => deleteEntry(btn.dataset.id));
-  });
-}
+        <section class="ledger">
+          <h3>Novo lançamento</h3>
+          <form class="entry-form" id="entryForm">
+            <div class="field"><label>Descrição</label><input name="descricao" type="text" placeholder="Mercado, salário..." required></div>
+            <div class="field"><label>Categoria</label><select name="categoria" required><option value="">selecione</option>${catOptions}</select></div>
+            <div class="field"><label>Valor</label><input name="valor" type="number" step="0.01" min="0.01" placeholder="0,00" required></div>
+            <div class="field"><label>Data</label><input name="data" type="date" value="${today()}" required></div>
+            <button class="btn" type="submit">Lançar</button>
+          </form>
+          <div class="cat-manager">
+            <div class="field"><label>Nova categoria</label><input id="novaCatNome" type="text" placeholder="Ex.: Transporte"></div>
+            <div class="field"><label>Tipo</label>
+              <select id="novaCatTipo"><option value="DESPESA">Despesa</option><option value="RECEITA">Receita</option></select>
+            </div>
+            <button class="btn ghost" id="addCatBtn">Criar categoria</button>
+          </div>
+        </section>
 
-render();
+        <section class="ledger">
+          <h3>Lançamentos</h3>
+          <table class="entries">
+            <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th style="text-align:right">Valor</th><th></th></tr></thead>
+            <tbody>${movRows}</tbody>
+          </table>
+        </section>
+      </main>
+      <footer>registro pessoal — não compartilhado com terceiros</footer>
+    `;
+  }
+
+  function bindShellEvents(){
+    document.getElementById('logoutBtn').addEventListener('click', doLogout);
+
+    document.getElementById('applyPeriod').addEventListener('click', () => {
+      state.dataInicio = document.getElementById('dataInicio').value;
+      state.dataFim = document.getElementById('dataFim').value;
+      loadRelatorios().then(render);
+    });
+
+    document.getElementById('gerarRelatorioBtn').addEventListener('click', gerarRelatorio);
+
+    document.getElementById('entryForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      state.ok = null; state.error = null;
+      submitEntry(e.target);
+    });
+
+    document.getElementById('addCatBtn').addEventListener('click', () => {
+      const nome = document.getElementById('novaCatNome').value;
+      const tipo = document.getElementById('novaCatTipo').value;
+      addCategoria(nome, tipo);
+    });
+
+    document.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', () => deleteEntry(btn.dataset.id));
+    });
+  }
+
+  render();
 </script>
 </body>
 </html>
